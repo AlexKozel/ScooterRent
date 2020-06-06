@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>ScooterRent</artifactId>
         <groupId>org.example</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>ScooterRent</artifactId>
+        <version>${projectVersion}</version>
     </parent>
 
     <artifactId>service-API</artifactId>
