@@ -98,7 +98,7 @@ DROP TABLE IF EXISTS `senla`.`RentPoint` ;
 CREATE TABLE IF NOT EXISTS `senla`.`RentPoint` (
   `RPointId` INT NOT NULL,
   `Coordinates` VARCHAR(45) NULL,
-  `Adress` VARCHAR(45) NULL,
+  `Address` VARCHAR(45) NULL,
   `Phone` VARCHAR(45) NULL,
   `CityId` INT NULL,
   PRIMARY KEY (`RPointId`),

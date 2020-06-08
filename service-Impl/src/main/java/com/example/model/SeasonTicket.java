@@ -8,7 +8,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "SeasonTicket")
 public class SeasonTicket extends AbstractEntity{
@@ -19,7 +19,17 @@ public class SeasonTicket extends AbstractEntity{
     private int SeasonTicketId;
     private int HoursLeft;
     private int CostPerHour;
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    private int UserId;
+
+    @OneToOne
+    @JoinColumn(name = "UserId")
+    @NonNull
+    private User user;
+
+    @Override
+    public String toString() {
+        return "SeasonTicket{" +
+                "HoursLeft=" + HoursLeft +
+                ", CostPerHour=" + CostPerHour +
+                '}';
+    }
 }

@@ -1,7 +1,6 @@
 package com.example;
 
-import com.example.model.Discount;
-import com.example.model.User;
+import com.example.model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -19,6 +18,12 @@ public class HibernateSessionFactory {
                 Configuration configuration = new Configuration();
                 configuration.configure();
                 configuration.addAnnotatedClass(Discount.class);
+                configuration.addAnnotatedClass(City.class);
+                configuration.addAnnotatedClass(LoginData.class);
+                configuration.addAnnotatedClass(RentPoint.class);
+                configuration.addAnnotatedClass(RentStory.class);
+                configuration.addAnnotatedClass(Scooter.class);
+                configuration.addAnnotatedClass(SeasonTicket.class);
                 configuration.addAnnotatedClass(User.class);
                 sessionFactory = configuration.buildSessionFactory();
             } catch (Exception e) {
