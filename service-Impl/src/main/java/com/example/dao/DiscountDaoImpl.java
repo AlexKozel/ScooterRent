@@ -6,44 +6,79 @@ import com.example.model.AbstractEntity;
 import com.example.model.Discount;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
 
+@Service
 public class DiscountDaoImpl implements DiscountDao {
 
+    @Override
     public Discount findById(int id) {
-        Discount d = null;
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-            Transaction transaction = session.beginTransaction();
-            d = session.get(Discount.class, id);
-            System.out.println(d);
-            return d;
+            return session.get(Discount.class, id);
         } catch (Exception e) {
             System.out.println("---Exception from DB - " + e);
-
-        }return d;
-    }
-
-    @Override
-    public ArrayList<Discount> findAll() {
+        }
         return null;
     }
 
     @Override
-    public void deleteById(int id) {
-
+    public List<Discount> findAll() {
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            return session.createQuery("SELECT d FROM Discount d ", Discount.class).getResultList();
+        }
     }
 
     @Override
-    public void update(AbstractEntity entity, int id) {
-
+    public void deleteById(int id) {
+        Session session = HibernateSessionFactory.getSession();
+        try {
+            Transaction transaction = session.beginTransaction();
+            Discount discount = session.load(Discount.class, id);
+            session.delete(discount);
+            transaction.commit();
+        } catch (Exception e) {
+            if (session.getTransaction().getStatus() == TransactionStatus.ACTIVE
+                    || session.getTransaction().getStatus() == TransactionStatus.MARKED_ROLLBACK) {
+                session.getTransaction().rollback();
+            }
+        } finally {
+            session.close();
+        }
     }
 
-    public void save(Discount discount){
-        try(Session session = HibernateSessionFactory.getSession()){
+    @Override
+    public void update(AbstractEntity entity) {
+        Session session = HibernateSessionFactory.getSession();
+        try {
             Transaction transaction = session.beginTransaction();
-            session.save(discount);
-            session.getTransaction().commit();
+            session.update(entity);
+            transaction.commit();
+        } catch (Exception e) {
+            if (session.getTransaction().getStatus() == TransactionStatus.ACTIVE
+                    || session.getTransaction().getStatus() == TransactionStatus.MARKED_ROLLBACK) {
+                session.getTransaction().rollback();
+            }
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public void save(AbstractEntity entity) {
+        Session session = HibernateSessionFactory.getSession();
+        try {
+            Transaction transaction = session.beginTransaction();
+            session.save(entity);
+            transaction.commit();
+        } catch (Exception e) {
+            if (session.getTransaction().getStatus() == TransactionStatus.ACTIVE
+                    || session.getTransaction().getStatus() == TransactionStatus.MARKED_ROLLBACK) {
+                session.getTransaction().rollback();
+            }
+        } finally {
             session.close();
         }
     }

@@ -3,46 +3,88 @@ package com.example.dao;
 import com.example.HibernateSessionFactory;
 import com.example.dao.daoApi.UserDao;
 import com.example.model.AbstractEntity;
-import com.example.model.Discount;
 import com.example.model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserDaoImpl implements UserDao {
 
-    public String message(){
-        return "Hello World!";
-    }
+    private Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 
     @Override
     public User findById(int id) {
-        User user = null;
+        logger.info("Finding user by id {}", id);
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-            Transaction transaction = session.beginTransaction();
-            user = session.get(User.class, id);
-            System.out.println(user);
-            return user;
+            return session.get(User.class, id);
         } catch (Exception e) {
-            System.out.println("---Exception from DB - " + e);
-
-        }return user;
-    }
-
-    public ArrayList<AbstractEntity> findAll() {
+            logger.debug("Exception from DAO -" + e);
+        }
         return null;
     }
 
     @Override
-    public void deleteById(int id) {
-
+    public List<User> findAll() {
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            return session.createQuery("SELECT u FROM User u", User.class).getResultList();
+        }
     }
 
     @Override
-    public void update(AbstractEntity entity, int id) {
+    public void deleteById(int id) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        try {
+            Transaction transaction = session.beginTransaction();
+            User user = session.load(User.class, id);
+            session.delete(user);
+            transaction.commit();
+        } catch (Exception e) {
+            if (session.getTransaction().getStatus() == TransactionStatus.ACTIVE
+                    || session.getTransaction().getStatus() == TransactionStatus.MARKED_ROLLBACK) {
+                session.getTransaction().rollback();
+            }
+        } finally {
+            session.close();
+        }
+    }
 
+    @Override
+    public void update(AbstractEntity entity) {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        try {
+            Transaction transaction = session.beginTransaction();
+            session.update(entity);
+            transaction.commit();
+        } catch (Exception e) {
+            if (session.getTransaction().getStatus() == TransactionStatus.ACTIVE
+                    || session.getTransaction().getStatus() == TransactionStatus.MARKED_ROLLBACK) {
+                session.getTransaction().rollback();
+            }
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public void save(AbstractEntity entity) {
+        Session session = HibernateSessionFactory.getSession();
+        try {
+            Transaction transaction = session.beginTransaction();
+            session.save(entity);
+            transaction.commit();
+        } catch (Exception e) {
+            if (session.getTransaction().getStatus() == TransactionStatus.ACTIVE
+                    || session.getTransaction().getStatus() == TransactionStatus.MARKED_ROLLBACK) {
+                session.getTransaction().rollback();
+            }
+        } finally {
+            session.close();
+        }
     }
 }

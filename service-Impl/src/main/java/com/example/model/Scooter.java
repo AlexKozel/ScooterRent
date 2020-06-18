@@ -19,16 +19,17 @@ public class Scooter  extends AbstractEntity{
     @GenericGenerator(name = "increment", strategy = "increment")
     private Integer scooterId;
 
-    @NonNull
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rentPointId")
     private RentPoint rentPoint;
 
-    @NonNull
     @OneToMany(mappedBy = "scooter")
     private List<RentStory> rentStoryList;
 
+    @NonNull
     private String model;
+
     @Enumerated(EnumType.ORDINAL)
     private ScooterStatus status;
 

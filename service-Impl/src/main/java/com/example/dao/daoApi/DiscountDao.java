@@ -1,9 +1,9 @@
 package com.example.dao.daoApi;
 
 import com.example.model.Discount;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface DiscountDao extends CRUDDao {
 
-    ArrayList<Discount> findAll();
+    List<Discount> findAll();
 }

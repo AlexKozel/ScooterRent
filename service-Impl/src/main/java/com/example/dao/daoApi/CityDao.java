@@ -1,4 +1,12 @@
 package com.example.dao.daoApi;
 
-public interface CityDao {
+import com.example.model.City;
+
+
+import java.util.List;
+
+public interface CityDao extends CRUDDao {
+
+    List<City> findAll();
+
 }

@@ -21,7 +21,7 @@ public class Discount extends AbstractEntity {
     @NonNull
     private Integer DiscountRate;
 
-    @OneToOne(mappedBy = "discount")
+    @OneToOne(mappedBy = "discount", optional = false)
     private User user;
 
     @Override

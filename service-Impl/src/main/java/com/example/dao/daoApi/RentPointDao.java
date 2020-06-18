@@ -1,4 +1,11 @@
 package com.example.dao.daoApi;
 
-public interface RentPointDao {
+import com.example.model.RentPoint;
+
+import java.util.List;
+
+public interface RentPointDao   extends CRUDDao {
+
+    List<RentPoint> findAll();
+
 }

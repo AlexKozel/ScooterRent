@@ -1,6 +1,5 @@
 package com.example;
 
-import com.example.model.City;
 import com.example.service.DiscountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

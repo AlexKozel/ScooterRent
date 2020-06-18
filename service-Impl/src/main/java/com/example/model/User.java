@@ -18,19 +18,22 @@ public class User extends AbstractEntity {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private Integer UserId;
+    @NonNull
     private String FirstName;
+    @NonNull
     private String SecondName;
+    @NonNull
     private Boolean Role;
 
     @OneToOne
     @JoinColumn(name = "DiscountId")
     private Discount discount;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", orphanRemoval = true)
     @NonNull
     private LoginData loginData;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<RentStory> rentStoryList;
 
     @OneToOne(mappedBy = "user")

@@ -1,4 +1,11 @@
 package com.example.dao.daoApi;
 
-public interface LoginDao {
+import com.example.model.LoginData;
+
+import java.util.List;
+
+public interface LoginDao extends CRUDDao {
+
+    List<LoginData> findAll();
+
 }

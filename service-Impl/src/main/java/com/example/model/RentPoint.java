@@ -17,7 +17,7 @@ public class RentPoint extends AbstractEntity{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Integer RPointId;
+    private Integer RentPointId;
     @NonNull
     private String Coordinates;
     @NonNull
@@ -30,7 +30,6 @@ public class RentPoint extends AbstractEntity{
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "cityId")
-    @NonNull
     private City city;
 
     @Override

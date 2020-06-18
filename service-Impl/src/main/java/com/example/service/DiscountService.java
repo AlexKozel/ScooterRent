@@ -2,7 +2,7 @@ package com.example.service;
 
 import com.example.dao.DiscountDaoImpl;
 import com.example.dao.UserDaoImpl;
-import com.example.model.Discount;
+import com.example.model.AbstractEntity;
 import com.example.model.User;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +20,7 @@ public class DiscountService {
         return s;
     }
 
-    public void save(){
-        discountDao.save(new Discount(20));
+    public void save(AbstractEntity entity){
+        discountDao.save(entity);
     }
-
 }

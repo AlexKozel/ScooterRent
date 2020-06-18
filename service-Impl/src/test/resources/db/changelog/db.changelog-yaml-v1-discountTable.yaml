@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: MyName
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: Discount
+      changes:
+        - createTable:
+            tableName: Discount
+            columns:
+              - column:
+                  name: DiscountId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    primaryKeyName: pk_discount
+              - column:
+                  name: DiscountRate
+                  type: int
+
+  - changeSet:
+      id: 2
+      author: MyName
+      comment: "Create Discount"
+      changes:
+        - insert:
+            tableName: Discount
+            columns:
+              - column:
+                  name: DiscountRate
+                  value: 23
+  - changeSet:
+      id: 3
+      author: MyName
+      comment: "Create Discount"
+      changes:
+        - insert:
+            tableName: Discount
+            columns:
+              - column:
+                  name: DiscountRate
+                  value: 33
