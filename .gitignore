@@ -4,4 +4,6 @@
 *.iml
 *.ipr
 *.mwb*
-*target
+*/target
+service-Impl/target/
+*.class

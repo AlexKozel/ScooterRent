@@ -1,6 +1,6 @@
 package com.example.dao.daoApi;
 
-import com.example.model.Scooter;
+import com.example.entity.Scooter;
 
 import java.util.List;
 

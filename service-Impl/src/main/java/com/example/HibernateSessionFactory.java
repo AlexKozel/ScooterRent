@@ -1,6 +1,6 @@
 package com.example;
 
-import com.example.model.*;
+import com.example.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

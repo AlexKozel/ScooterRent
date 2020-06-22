@@ -1,7 +1,7 @@
 package com.example.dao;
 
 
-import com.example.model.SeasonTicket;
+import com.example.entity.SeasonTicket;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

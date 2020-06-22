@@ -1,6 +1,6 @@
 package com.example.dao;
 
-import com.example.model.City;
+import com.example.entity.City;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

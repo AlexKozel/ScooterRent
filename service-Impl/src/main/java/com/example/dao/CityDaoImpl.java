@@ -2,8 +2,8 @@ package com.example.dao;
 
 import com.example.HibernateSessionFactory;
 import com.example.dao.daoApi.CityDao;
-import com.example.model.AbstractEntity;
-import com.example.model.City;
+import com.example.entity.AbstractEntity;
+import com.example.entity.City;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.resource.transaction.spi.TransactionStatus;

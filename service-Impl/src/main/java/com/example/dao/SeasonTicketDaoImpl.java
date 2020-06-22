@@ -2,8 +2,8 @@ package com.example.dao;
 
 import com.example.HibernateSessionFactory;
 import com.example.dao.daoApi.SeasonTicketDao;
-import com.example.model.AbstractEntity;
-import com.example.model.SeasonTicket;
+import com.example.entity.AbstractEntity;
+import com.example.entity.SeasonTicket;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.resource.transaction.spi.TransactionStatus;

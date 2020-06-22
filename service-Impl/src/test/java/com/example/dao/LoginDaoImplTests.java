@@ -1,7 +1,7 @@
 package com.example.dao;
 
 
-import com.example.model.LoginData;
+import com.example.entity.LoginData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

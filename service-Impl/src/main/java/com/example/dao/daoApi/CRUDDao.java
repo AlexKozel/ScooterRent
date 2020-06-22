@@ -1,6 +1,6 @@
 package com.example.dao.daoApi;
 
-import com.example.model.AbstractEntity;
+import com.example.entity.AbstractEntity;
 
 public interface CRUDDao {
     public AbstractEntity findById(int id);

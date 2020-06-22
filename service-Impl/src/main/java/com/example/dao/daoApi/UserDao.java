@@ -1,6 +1,6 @@
 package com.example.dao.daoApi;
 
-import com.example.model.User;
+import com.example.entity.User;
 
 import java.util.List;
 

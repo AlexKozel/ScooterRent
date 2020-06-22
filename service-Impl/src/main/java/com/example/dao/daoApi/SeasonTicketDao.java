@@ -1,6 +1,6 @@
 package com.example.dao.daoApi;
 
-import com.example.model.SeasonTicket;
+import com.example.entity.SeasonTicket;
 
 import java.util.List;
 

@@ -2,8 +2,8 @@ package com.example.dao;
 
 import com.example.HibernateSessionFactory;
 import com.example.dao.daoApi.LoginDao;
-import com.example.model.AbstractEntity;
-import com.example.model.LoginData;
+import com.example.entity.AbstractEntity;
+import com.example.entity.LoginData;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.resource.transaction.spi.TransactionStatus;

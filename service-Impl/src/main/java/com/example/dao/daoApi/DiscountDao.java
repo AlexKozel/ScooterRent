@@ -1,6 +1,6 @@
 package com.example.dao.daoApi;
 
-import com.example.model.Discount;
+import com.example.entity.Discount;
 import java.util.List;
 
 public interface DiscountDao extends CRUDDao {

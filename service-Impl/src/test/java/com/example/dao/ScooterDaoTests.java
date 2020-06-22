@@ -1,7 +1,7 @@
 package com.example.dao;
 
 
-import com.example.model.*;
+import com.example.entity.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.model.ScooterStatus.*;
+import static com.example.entity.ScooterStatus.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

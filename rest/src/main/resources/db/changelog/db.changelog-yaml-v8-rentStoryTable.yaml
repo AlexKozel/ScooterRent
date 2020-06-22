@@ -1,0 +1,92 @@
+databaseChangeLog:
+  - changeSet:
+      id: 22
+      author: MyName
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: RentStory
+      changes:
+        - createTable:
+            tableName: RentStory
+            columns:
+              - column:
+                  name: RentStoryId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    primaryKeyName: pk_RentStory
+              - column:
+                  name: RentDuration
+                  type: int
+              - column:
+                  name: Money
+                  type: int
+              - column:
+                  name: PaidWay
+                  type: varchar(45)
+              - column:
+                  name: ScooterId
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_RS_ScooterId
+                    references: Scooter(ScooterId)
+              - column:
+                  name: UserId
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_RS_userId
+                    references: User(UserId)
+
+  - changeSet:
+      id: 23
+      author: MyName
+      comment: "Create RentStory"
+      changes:
+        - insert:
+            tableName: RentStory
+            columns:
+              - column:
+                  name: RentDuration
+                  value: 2
+              - column:
+                  name: Money
+                  value: 20
+              - column:
+                  name: PaidWay
+                  value: "card"
+              - column:
+                  name: ScooterId
+                  value: 1
+              - column:
+                  name: UserId
+                  value: 1
+
+  - changeSet:
+      id: 24
+      author: MyName
+      comment: "Create RentStory"
+      changes:
+        - insert:
+            tableName: RentStory
+            columns:
+              - column:
+                  name: RentDuration
+                  value: 23
+              - column:
+                  name: Money
+                  value: 311
+              - column:
+                  name: PaidWay
+                  value: "cash"
+              - column:
+                  name: ScooterId
+                  value: 2
+              - column:
+                  name: UserId
+                  value: 2

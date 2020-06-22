@@ -1,6 +1,6 @@
 package com.example.dao.daoApi;
 
-import com.example.model.RentPoint;
+import com.example.entity.RentPoint;
 
 import java.util.List;
 

@@ -2,8 +2,8 @@ package com.example.dao;
 
 import com.example.HibernateSessionFactory;
 import com.example.dao.daoApi.DiscountDao;
-import com.example.model.AbstractEntity;
-import com.example.model.Discount;
+import com.example.entity.AbstractEntity;
+import com.example.entity.Discount;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
