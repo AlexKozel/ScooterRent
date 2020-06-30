@@ -1,7 +1,5 @@
 package com.example;
 
-import com.example.entity.LoginData;
-import com.example.entity.User;
 import liquibase.Liquibase;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
@@ -12,30 +10,17 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@ActiveProfiles("test")
-@SpringBootApplication
-//@RunWith(SpringRunner.class)
-public class ApplicationTests {
+@Configuration
+public class DataBaseConfig {
 
-    @Test
-    public void contextLoads() throws SQLException, LiquibaseException {
-        init();
-    }
-
-    public static User testUser(int id){
-        User user = new User( "qwer", "qwer",new LoginData("qwer", "qwer"));
-        user.setUserId(id);
-        return user;
-    }
-
-    public static Liquibase init() throws LiquibaseException, SQLException{
+    @Bean
+    public Liquibase getLiquibase() throws LiquibaseException, SQLException {
         // Prepare the Hibernate configuration
         StandardServiceRegistry reg = new StandardServiceRegistryBuilder().configure().build();
         MetadataSources metaDataSrc = new MetadataSources(reg);
@@ -47,12 +32,7 @@ public class ApplicationTests {
 // Initialize Liquibase and run the update
         Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(jdbcCon);
         Liquibase liquibase = new Liquibase("db/changelog/db.changelog-master.yaml", new ClassLoaderResourceAccessor(), database);
-        liquibase.update("test");
         return liquibase;
 
-
-//
-//// Create Hibernate SessionFactory
-//        SessionFactory sf = metaDataSrc.addAnnotatedClass(User.class).addAnnotatedClass(RentStory.class).buildMetadata().buildSessionFactory();
     }
 }

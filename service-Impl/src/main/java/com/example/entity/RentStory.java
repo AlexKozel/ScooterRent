@@ -1,6 +1,8 @@
 package com.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -18,9 +20,9 @@ public class RentStory extends AbstractEntity {
     @GenericGenerator(name = "increment", strategy = "increment")
     private int rentStoryId;
 
-    @NonNull
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne( cascade = CascadeType.ALL)
     @JoinColumn(name = "userId")
+    @JsonIgnore
     private User user;
     @NonNull
     @ManyToOne(optional = false, cascade = CascadeType.ALL)

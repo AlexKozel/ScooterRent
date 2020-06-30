@@ -17,26 +17,25 @@ public class User extends AbstractEntity {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Integer UserId;
+    private Integer userId;
     @NonNull
-    private String FirstName;
+    private String firstName;
     @NonNull
-    private String SecondName;
-    @NonNull
-    private Boolean Role;
+    private String secondName;
 
     @OneToOne
     @JoinColumn(name = "DiscountId")
     private Discount discount;
 
-    @OneToOne(mappedBy = "user", orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "LoginId")
     @NonNull
     private LoginData loginData;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<RentStory> rentStoryList;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user",orphanRemoval = true)
     private SeasonTicket seasonTicket;
 
     /**
@@ -46,13 +45,12 @@ public class User extends AbstractEntity {
     @Override
     public String toString() {
         return "User{" +
-                "UserId=" + UserId +
-                ", FirstName='" + FirstName + '\'' + "<br />" +
-                ", SecondName='" + SecondName + '\'' + "<br />" +
-                ", Role=" + Role +'\'' + "<br />" +
+                "UserId=" + userId +
+                ", FirstName='" + firstName + '\'' + "<br />" +
+                ", SecondName='" + secondName + '\'' + "<br />" +
                 ", Discount=" + discount +'\'' + "<br />" +
                 ", LoginData=" + loginData  +'\'' + "<br />" +
-                ", RentStories=" + rentStoryList +'\'' + "<br />" +
+//                ", RentStories=" + rentStoryList +'\'' + "<br />" +
                 '}';
     }
 

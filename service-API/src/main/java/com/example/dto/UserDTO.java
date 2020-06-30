@@ -1,19 +1,22 @@
 package com.example.dto;
 
-public class UserDTO {
+
+public class UserDTO extends AbstractDTO{
+
+    private Integer userId;
 
     private String firstName;
 
     private String secondName;
 
-    private Boolean role;
-
     @Override
     public String toString() {
         return "UserDTO{" +
-                "FirstName='" + firstName + '\'' +
-                ", SecondName='" + secondName + '\'' +
-                ", Role='" + role + '\'' +
+                "Id='" + userId + '\'' +
+                "firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
                 '}';
+
+
     }
 }

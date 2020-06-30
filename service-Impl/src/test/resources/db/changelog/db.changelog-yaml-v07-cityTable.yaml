@@ -1,47 +1,47 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
-      author: MyName
+      id: 19
+      author: Aliaksei_Kozel
       preConditions:
         - onFail: MARK_RAN
           not:
             tableExists:
-              tableName: Discount
+              tableName: City
       changes:
         - createTable:
-            tableName: Discount
+            tableName: City
             columns:
               - column:
-                  name: DiscountId
+                  name: CityId
                   type: BIGINT
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
-                    primaryKeyName: pk_discount
+                    primaryKeyName: pk_city
               - column:
-                  name: DiscountRate
-                  type: int
+                  name: CityName
+                  type: varchar(45)
 
   - changeSet:
-      id: 2
-      author: MyName
-      comment: "Create Discount"
+      id: 20
+      author: Aliaksei_Kozel
+      comment: "Create City"
       changes:
         - insert:
-            tableName: Discount
+            tableName: City
             columns:
               - column:
-                  name: DiscountRate
-                  value: 23
+                  name: CityName
+                  value: "Minsk"
   - changeSet:
-      id: 3
-      author: MyName
-      comment: "Create Discount"
+      id: 21
+      author: Aliaksei_Kozel
+      comment: "Create City"
       changes:
         - insert:
-            tableName: Discount
+            tableName: City
             columns:
               - column:
-                  name: DiscountRate
-                  value: 33
+                  name: CityName
+                  value: "Moscow"

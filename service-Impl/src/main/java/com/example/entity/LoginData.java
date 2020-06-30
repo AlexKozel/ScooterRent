@@ -1,9 +1,11 @@
 package com.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -16,22 +18,28 @@ public class LoginData  extends AbstractEntity{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private int LoginId;
+    private int loginId;
     @NonNull
-    private String Login;
+    private String login;
     @NonNull
-    private String Password;
+    private String password;
 
-    @OneToOne
-    @JoinColumn(name = "UserId")
+    @OneToOne(mappedBy = "discount",cascade = CascadeType.ALL)
+    @JsonIgnore
     private User user;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinTable(name = "LoginRole",
+                joinColumns = @JoinColumn(name = "LoginId"),
+                inverseJoinColumns = @JoinColumn(name = "RoleId"))
+    private List<Role> roles;
 
     @Override
     public String toString() {
         return "LoginData{" +
-                "LoginId=" + LoginId +
-                ", Login='" + Login + '\'' +
-                ", Password='" + Password + '\'' +
+                "LoginId=" + loginId +
+                ", Login='" + login + '\'' +
+                ", Password='" + password + '\'' +
                 '}';
     }
 }

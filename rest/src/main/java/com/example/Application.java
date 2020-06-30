@@ -1,6 +1,8 @@
 package com.example;
 
-import com.example.service.DiscountService;
+import com.example.dto.UserDTO;
+import com.example.entity.User;
+import com.example.service.UserService;
 import liquibase.Liquibase;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
@@ -14,23 +16,30 @@ import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Map;
 
 @SpringBootApplication(scanBasePackages = "com.example")
 @RestController
 public class Application {
 
-    public final DiscountService service;
+    public final UserService service;
 
-    public Application(@Autowired DiscountService service) {
+    public Application(@Autowired UserService service) {
         this.service = service;
     }
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String home() {
         System.out.println("create a discount");
 //        service.save();
@@ -40,8 +49,22 @@ public class Application {
 
     }
 
+    @GetMapping("/")
+//    public ResponseEntity<String> getUser(@RequestHeader("authorization") Map<String, String> map){
+        public String getUser(){
+//        System.out.println(map);
+        String s = "greeting";
+        return s;
+    }
+
+    @GetMapping("/registration")
+    public String registration(){
+        return "registration page";
+    }
+
     public static void main(String[] args) throws LiquibaseException, SQLException {
         SpringApplication.run(Application.class, args);
+
         StandardServiceRegistry reg = new StandardServiceRegistryBuilder().configure().build();
         MetadataSources metaDataSrc = new MetadataSources(reg);
 

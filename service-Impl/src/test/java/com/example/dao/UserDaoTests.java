@@ -1,27 +1,21 @@
 package com.example.dao;
 
 
-import com.example.entity.LoginData;
+import com.example.ApplicationTests;
 import com.example.entity.User;
 import liquibase.Liquibase;
-import liquibase.database.Database;
-import liquibase.database.DatabaseFactory;
-import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
-import liquibase.resource.ClassLoaderResourceAccessor;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,25 +27,22 @@ public class UserDaoTests {
     @Autowired
     private UserDaoImpl userDao;
 
+    private final Logger logger = LoggerFactory.getLogger(UserDaoTests.class);
+
     @Before
     public void init() throws SQLException, LiquibaseException {
-        // Prepare the Hibernate configuration
-        StandardServiceRegistry reg = new StandardServiceRegistryBuilder().configure().build();
-        MetadataSources metaDataSrc = new MetadataSources(reg);
+        ApplicationTests.init();
+    }
 
-        // Get database connection
-        Connection con = metaDataSrc.getServiceRegistry().getService(ConnectionProvider.class).getConnection();
-        JdbcConnection jdbcCon = new JdbcConnection(con);
-
-        // Initialize Liquibase and run the update
-        Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(jdbcCon);
-        Liquibase liquibase = new Liquibase("db/changelog/db.changelog-master.yaml", new ClassLoaderResourceAccessor(), database);
-        liquibase.update("test");
+    @AfterClass
+    public static void rewrite() throws SQLException, LiquibaseException {
+        ApplicationTests.init().dropAll();
     }
 
     @Test
     public void findByIdTest(){
         User user = userDao.findById(1);
+        logger.info("founded user {}", user);
         Assert.assertNotNull(user);
     }
 
@@ -66,7 +57,7 @@ public class UserDaoTests {
     @Test
     public void deleteByIdTest(){
         List<User> usersBefore = userDao.findAll();
-        userDao.deleteById(4);
+        userDao.deleteById(2);
         List<User> usersAfter = userDao.findAll();
         Assert.assertNotEquals(usersBefore, usersAfter);
         Assert.assertTrue(usersBefore.size() != usersAfter.size());
@@ -79,13 +70,13 @@ public class UserDaoTests {
         user.setFirstName("Vasia");
         userDao.update(user);
         Assert.assertNotSame(username, userDao.findById(1).getFirstName());
-        System.out.println(userDao.findById(1).getFirstName());
     }
 
     @Test
     public void saveTest(){
         List<User> usersBefore = userDao.findAll();
-        User user = new User("Name", "Surname", true, new LoginData());
+        User oldUser = usersBefore.get(0);
+        User user = new User("Name", "Surname", oldUser.getLoginData());
         userDao.save(user);
         List<User> usersAfter = userDao.findAll();
         Assert.assertNotEquals(usersBefore, usersAfter);

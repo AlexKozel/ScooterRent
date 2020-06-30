@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 16
-      author: MyName
+      id: 22
+      author: Aliaksei_Kozel
       preConditions:
         - onFail: MARK_RAN
           not:
@@ -37,8 +37,8 @@ databaseChangeLog:
                     references: City(CityId)
 
   - changeSet:
-      id: 17
-      author: MyName
+      id: 23
+      author: Aliaksei_Kozel
       comment: "Create RentPoint"
       changes:
         - insert:
@@ -49,16 +49,16 @@ databaseChangeLog:
                   value: "23"
               - column:
                   name: Address
-                  value: "23"
+                  value: "volgogradskaya "
               - column:
                   name: Phone
-                  value: "23"
+                  value: "230303"
               - column:
                   name: CityId
                   value: 1
   - changeSet:
-      id: 18
-      author: MyName
+      id: 24
+      author: Aliaksei_Kozel
       comment: "Create RentPoint"
       changes:
         - insert:
@@ -69,10 +69,10 @@ databaseChangeLog:
                   value: "232"
               - column:
                   name: Address
-                  value: "232"
+                  value: "red  square"
               - column:
                   name: Phone
-                  value: "232"
+                  value: "330303"
               - column:
                   name: CityId
                   value: 2

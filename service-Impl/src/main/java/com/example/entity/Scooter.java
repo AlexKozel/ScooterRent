@@ -20,11 +20,11 @@ public class Scooter  extends AbstractEntity{
     private Integer scooterId;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "rentPointId")
     private RentPoint rentPoint;
 
-    @OneToMany(mappedBy = "scooter")
+    @OneToMany(mappedBy = "scooter", orphanRemoval = true)
     private List<RentStory> rentStoryList;
 
     @NonNull

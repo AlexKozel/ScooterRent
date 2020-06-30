@@ -25,6 +25,7 @@ public class HibernateSessionFactory {
                 configuration.addAnnotatedClass(LoginData.class);
                 configuration.addAnnotatedClass(RentPoint.class);
                 configuration.addAnnotatedClass(RentStory.class);
+                configuration.addAnnotatedClass(Role.class);
                 configuration.addAnnotatedClass(Scooter.class);
                 configuration.addAnnotatedClass(SeasonTicket.class);
                 configuration.addAnnotatedClass(User.class);
@@ -36,13 +37,15 @@ public class HibernateSessionFactory {
         return sessionFactory;
     }
 
+
     public static Session getSession() {
         if (session == null) {
             try {
-              return getSessionFactory().openSession();
+                return getSessionFactory().openSession();
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
-        }return session;
+        }
+        return session;
     }
 }

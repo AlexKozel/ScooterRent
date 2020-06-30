@@ -1,6 +1,5 @@
 package com.example.service;
 
-import com.example.dao.DiscountDaoImpl;
 import com.example.dao.UserDaoImpl;
 import com.example.dto.UserDTO;
 import com.example.entity.AbstractEntity;
@@ -10,17 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DiscountService {
+public class UserService {
 
     private final ModelMapper modelMapper;
+    private final UserDaoImpl userDao;
 
-    DiscountService(@Autowired ModelMapper modelMapper) {
+    @Autowired
+    UserService(ModelMapper modelMapper, UserDaoImpl userDao) {
         this.modelMapper = modelMapper;
+        this.userDao = userDao;
     }
-
-
-    DiscountDaoImpl discountDao = new DiscountDaoImpl();
-    UserDaoImpl userDao = new UserDaoImpl();
 
     public String message() {
 
@@ -31,7 +29,14 @@ public class DiscountService {
         return ("Вот объект из базы данных" + u.toString() + "\n" + "Вот Все объкеты - " + dto.toString());
     }
 
+    public UserDTO getUser(){
+        User u = userDao.findById(1);
+        UserDTO dto = modelMapper.map(u, UserDTO.class);
+        System.out.println(dto.toString());
+        return dto;
+    }
+
     public void save(AbstractEntity entity) {
-        discountDao.save(entity);
+        userDao.save(entity);
     }
 }

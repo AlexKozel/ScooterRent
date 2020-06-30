@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10
+      author: Aliaksei_Kozel
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: LoginRole
+      changes:
+        - createTable:
+            tableName: LoginRole
+            columns:
+              - column:
+                  name: LoginRoleId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    primaryKeyName: pk_loginrole
+              - column:
+                  name: RoleId
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_LroleId
+                    references: Role(RoleId)
+              - column:
+                  name: LoginId
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_RloginId
+                    references: LoginData(LoginId)
+
+  - changeSet:
+      id: 11
+      author: Aliaksei_Kozel
+      comment: "Create Role"
+      changes:
+        - insert:
+            tableName: LoginRole
+            columns:
+              - column:
+                  name: RoleId
+                  value: "1"
+              - column:
+                  name: LoginId
+                  value: "2"
+  - changeSet:
+      id: 12
+      author: Aliaksei_Kozel
+      comment: "Create Role"
+      changes:
+        - insert:
+            tableName: LoginRole
+            columns:
+              - column:
+                  name: RoleId
+                  value: "1"
+              - column:
+                  name: LoginId
+                  value: "2"

@@ -1,17 +1,23 @@
 databaseChangeLog:
   - include:
-        file: db/changelog/db.changelog-yaml-v1-discountTable.yaml
+        file: db/changelog/db.changelog-yaml-v01-roleTable.yaml
   - include:
-        file: db/changelog/db.changelog-yaml-v2-userTable.yaml
+        file: db/changelog/db.changelog-yaml-v02-discountTable.yaml
   - include:
-        file: db/changelog/db.changelog-yaml-v3-seasonTicketTable.yaml
+        file: db/changelog/db.changelog-yaml-v03-loginDataTable.yaml
   - include:
-        file: db/changelog/db.changelog-yaml-v4-loginDataTable.yaml
+        file: db/changelog/db.changelog-yaml-v04-roleLoginTable.yaml
   - include:
-        file: db/changelog/db.changelog-yaml-v5-cityTable.yaml
+        file: db/changelog/db.changelog-yaml-v05-userTable.yaml
   - include:
-        file: db/changelog/db.changelog-yaml-v6-RentPointTable.yaml
+        file: db/changelog/db.changelog-yaml-v06-seasonTicketTable.yaml
   - include:
-        file: db/changelog/db.changelog-yaml-v7-scooterTable.yaml
+        file: db/changelog/db.changelog-yaml-v07-cityTable.yaml
   - include:
-        file: db/changelog/db.changelog-yaml-v8-rentStoryTable.yaml
+        file: db/changelog/db.changelog-yaml-v08-RentPointTable.yaml
+  - include:
+        file: db/changelog/db.changelog-yaml-v09-scooterTable.yaml
+  - include:
+        file: db/changelog/db.changelog-yaml-v10-rentStoryTable.yaml
+  - include:
+        file: db/changelog/db.changelog-yaml-v11-AddTestUser.yaml

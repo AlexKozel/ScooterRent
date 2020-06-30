@@ -17,17 +17,18 @@ public class RentPoint extends AbstractEntity{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Integer RentPointId;
+    private Integer rentPointId;
     @NonNull
-    private String Coordinates;
+    private String coordinates;
     @NonNull
-    private String Address;
+    private String address;
     @NonNull
-    private String Phone;
+    private String phone;
 
-    @OneToMany(mappedBy = "rentPoint")
+    @OneToMany(mappedBy = "rentPoint", cascade = CascadeType.ALL)
     private List<Scooter> scooterList;
 
+    @NonNull
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "cityId")
     private City city;
@@ -35,9 +36,9 @@ public class RentPoint extends AbstractEntity{
     @Override
     public String toString() {
         return "RentPoint{" +
-                "Coordinates='" + Coordinates + '\'' +
-                ", Address='" + Address + '\'' +
-                ", Phone='" + Phone + '\'' +
+                "Coordinates='" + coordinates + '\'' +
+                ", Address='" + address + '\'' +
+                ", Phone='" + phone + '\'' +
                 '}';
     }
 }

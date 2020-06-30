@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 22
-      author: MyName
+      id: 28
+      author: Aliaksei_Kozel
       preConditions:
         - onFail: MARK_RAN
           not:
@@ -39,13 +39,14 @@ databaseChangeLog:
                   name: UserId
                   type: BIGINT
                   constraints:
-                    nullable: false
+                    nullable: true
                     foreignKeyName: fk_RS_userId
                     references: User(UserId)
+                    onDelete: SET NULL
 
   - changeSet:
-      id: 23
-      author: MyName
+      id: 29
+      author: Aliaksei_Kozel
       comment: "Create RentStory"
       changes:
         - insert:
@@ -68,8 +69,8 @@ databaseChangeLog:
                   value: 1
 
   - changeSet:
-      id: 24
-      author: MyName
+      id: 30
+      author: Aliaksei_Kozel
       comment: "Create RentStory"
       changes:
         - insert:

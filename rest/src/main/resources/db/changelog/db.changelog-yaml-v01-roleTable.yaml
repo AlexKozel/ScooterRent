@@ -1,47 +1,47 @@
 databaseChangeLog:
   - changeSet:
-      id: 13
-      author: MyName
+      id: 1
+      author: Aliaksei_Kozel
       preConditions:
         - onFail: MARK_RAN
           not:
             tableExists:
-              tableName: City
+              tableName: Role
       changes:
         - createTable:
-            tableName: City
+            tableName: Role
             columns:
               - column:
-                  name: CityId
+                  name: RoleId
                   type: BIGINT
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
-                    primaryKeyName: pk_city
+                    primaryKeyName: pk_role
               - column:
-                  name: CityName
+                  name: Name
                   type: varchar(45)
 
   - changeSet:
-      id: 14
-      author: MyName
-      comment: "Create City"
+      id: 2
+      author: Aliaksei_Kozel
+      comment: "Create Role"
       changes:
         - insert:
-            tableName: City
+            tableName: Role
             columns:
               - column:
-                  name: CityName
-                  value: "Minsk"
+                  name: Name
+                  value: admin
   - changeSet:
-      id: 15
-      author: MyName
-      comment: "Create City"
+      id: 3
+      author: Aliaksei_Kozel
+      comment: "Create Role"
       changes:
         - insert:
-            tableName: City
+            tableName: Role
             columns:
               - column:
-                  name: CityName
-                  value: "Moscow"
+                  name: Name
+                  value: user

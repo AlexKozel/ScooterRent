@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 19
-      author: MyName
+      id: 25
+      author: Aliaksei_Kozel
       preConditions:
         - onFail: MARK_RAN
           not:
@@ -34,8 +34,8 @@ databaseChangeLog:
                     references: RentPoint(RentPointId)
 
   - changeSet:
-      id: 20
-      author: MyName
+      id: 26
+      author: Aliaksei_Kozel
       comment: "Create Scooter"
       changes:
         - insert:
@@ -51,8 +51,8 @@ databaseChangeLog:
                   name: RentPointId
                   value: 1
   - changeSet:
-      id: 21
-      author: MyName
+      id: 27
+      author: Aliaksei_Kozel
       comment: "Create Scooter"
       changes:
         - insert:

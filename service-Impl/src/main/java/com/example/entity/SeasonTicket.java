@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -16,20 +17,21 @@ public class SeasonTicket extends AbstractEntity{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private int SeasonTicketId;
-    private int HoursLeft;
-    private int CostPerHour;
+    private int seasonTicketId;
+    private int hoursLeft;
+    private int costPerHour;
 
     @OneToOne
     @JoinColumn(name = "UserId")
     @NonNull
+    @JsonIgnore
     private User user;
 
     @Override
     public String toString() {
         return "SeasonTicket{" +
-                "HoursLeft=" + HoursLeft +
-                ", CostPerHour=" + CostPerHour +
+                "HoursLeft=" + hoursLeft +
+                ", CostPerHour=" + costPerHour +
                 '}';
     }
 }

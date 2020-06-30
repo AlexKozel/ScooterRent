@@ -17,18 +17,18 @@ public class City extends AbstractEntity{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Integer CityId;
+    private Integer cityId;
 
     @NonNull
-    private String CityName;
+    private String cityName;
 
-    @OneToMany(mappedBy = "city")
+    @OneToMany(mappedBy = "city",orphanRemoval = true)
     private List<RentPoint> rentPointList;
 
     @Override
     public String toString() {
         return "City{" +
-                "CityName='" + CityName + '\'' +
+                "CityName='" + cityName + '\'' +
                 '}';
     }
 }
