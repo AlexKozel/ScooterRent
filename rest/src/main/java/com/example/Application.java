@@ -57,10 +57,10 @@ public class Application {
         return s;
     }
 
-    @GetMapping("/registration")
-    public String registration(){
-        return "registration page";
-    }
+//    @GetMapping("/registration")
+//    public String registration(){
+//        return "registration page";
+//    }
 
     public static void main(String[] args) throws LiquibaseException, SQLException {
         SpringApplication.run(Application.class, args);

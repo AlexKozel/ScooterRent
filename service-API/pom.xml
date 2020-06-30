@@ -16,6 +16,10 @@
             <artifactId>modelmapper</artifactId>
             <version>2.3.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
     <artifactId>service-API</artifactId>

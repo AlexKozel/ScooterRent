@@ -1,6 +1,8 @@
 package com.example.dto;
 
+import lombok.Data;
 
+@Data
 public class UserDTO extends AbstractDTO{
 
     private Integer userId;
