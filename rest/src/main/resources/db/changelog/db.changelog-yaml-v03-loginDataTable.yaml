@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7
+      author: Aliaksei_Kozel
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: LoginData
+      changes:
+        - createTable:
+            tableName: LoginData
+            columns:
+              - column:
+                  name: loginId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    primaryKeyName: pk_login
+              - column:
+                  name: Login
+                  type: varchar(45)
+              - column:
+                  name: Password
+                  type: varchar(60)
+  - changeSet:
+      id: 8
+      author: Aliaksei_Kozel
+      comment: "Create LoginData"
+      changes:
+        - insert:
+            tableName: LoginData
+            columns:
+              - column:
+                  name: Login
+                  value: "admin"
+              - column:
+                  name: Password
+                  value: "$2a$10$Dm3U0kUeRst8XLxZsxpy/uaLc/3ax7CL1xEAm0dFUQWrVT6cDGGbe"
+  - changeSet:
+      id: 9
+      author: Aliaksei_Kozel
+      comment: "Create LoginData"
+      changes:
+        - insert:
+            tableName: LoginData
+            columns:
+              - column:
+                  name: Login
+                  value: "user"
+              - column:
+                  name: Password
+                  value: "$2y$10$H34wF5uxM0hRPdGciNveeujDUUhXrm8OAoscCLaphnblkIMeNl1Di"

@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 31
+      author: Aliaksei_Kozel
+      comment: "Create LoginData"
+      changes:
+        - insert:
+            tableName: LoginData
+            columns:
+              - column:
+                  name: Login
+                  value: "qwer"
+              - column:
+                  name: Password
+                  value: "qwer"
+  - changeSet:
+      id: 32
+      author: Aliaksei_Kozel
+      comment: "Create Discount"
+      changes:
+        - insert:
+            tableName: Discount
+            columns:
+              - column:
+                  name: DiscountRate
+                  value: 30
+  - changeSet:
+      id: 33
+      author: Aliaksei_Kozel
+      comment: "Create user"
+      changes:
+        - insert:
+            tableName: User
+            columns:
+              - column:
+                  name: FirstName
+                  value: "qwer"
+              - column:
+                  name: SecondName
+                  value: "qwer"
+              - column:
+                  name: DiscountId
+                  value: 3
+              - column:
+                  name: LoginId
+                  value: 3

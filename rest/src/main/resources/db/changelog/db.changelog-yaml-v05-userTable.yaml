@@ -1,0 +1,86 @@
+databaseChangeLog:
+  - changeSet:
+      id: 13
+      author: Aliaksei_Kozel
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: User
+      changes:
+        - createTable:
+            tableName: User
+            columns:
+              - column:
+                  name: UserId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    primaryKeyName: pk_user
+              - column:
+                  name: FirstName
+                  type: varchar(50)
+                  constraints:
+                    unique: false
+                    nullable: false
+              - column:
+                  name: SecondName
+                  type: varchar(512)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: DiscountId
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_user_discountId
+                    references: Discount(DiscountId)
+              - column:
+                  name: LoginId
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_loginId
+                    references: LoginData(LoginId)
+  - changeSet:
+      id: 14
+      author: Aliaksei_Kozel
+      comment: "Create user"
+      changes:
+        - insert:
+            tableName: User
+            columns:
+              - column:
+                  name: FirstName
+                  value: "admin"
+              - column:
+                  name: SecondName
+                  value: "admin"
+              - column:
+                  name: DiscountId
+                  value: 1
+              - column:
+                  name: LoginId
+                  value: 1
+  - changeSet:
+      id: 15
+      author: Aliaksei_Kozel
+      comment: "Create user"
+      changes:
+        - insert:
+            tableName: User
+            columns:
+              - column:
+                  name: FirstName
+                  value: "admin"
+              - column:
+                  name: SecondName
+                  value: "admin"
+              - column:
+                  name: DiscountId
+                  value: 2
+              - column:
+                  name: LoginId
+                  value: 2

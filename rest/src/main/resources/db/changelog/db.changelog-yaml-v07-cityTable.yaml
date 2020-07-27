@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 19
+      author: Aliaksei_Kozel
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: City
+      changes:
+        - createTable:
+            tableName: City
+            columns:
+              - column:
+                  name: CityId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    primaryKeyName: pk_city
+              - column:
+                  name: CityName
+                  type: varchar(45)
+
+  - changeSet:
+      id: 20
+      author: Aliaksei_Kozel
+      comment: "Create City"
+      changes:
+        - insert:
+            tableName: City
+            columns:
+              - column:
+                  name: CityName
+                  value: "Minsk"
+  - changeSet:
+      id: 21
+      author: Aliaksei_Kozel
+      comment: "Create City"
+      changes:
+        - insert:
+            tableName: City
+            columns:
+              - column:
+                  name: CityName
+                  value: "Moscow"

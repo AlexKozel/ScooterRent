@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Aliaksei_Kozel
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: Role
+      changes:
+        - createTable:
+            tableName: Role
+            columns:
+              - column:
+                  name: RoleId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    primaryKeyName: pk_role
+              - column:
+                  name: Name
+                  type: varchar(45)
+
+  - changeSet:
+      id: 2
+      author: Aliaksei_Kozel
+      comment: "Create Role"
+      changes:
+        - insert:
+            tableName: Role
+            columns:
+              - column:
+                  name: Name
+                  value: ROLE_ADMIN
+  - changeSet:
+      id: 3
+      author: Aliaksei_Kozel
+      comment: "Create Role"
+      changes:
+        - insert:
+            tableName: Role
+            columns:
+              - column:
+                  name: Name
+                  value: ROLE_USER

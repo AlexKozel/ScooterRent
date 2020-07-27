@@ -1,0 +1,78 @@
+databaseChangeLog:
+  - changeSet:
+      id: 22
+      author: Aliaksei_Kozel
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: RentPoint
+      changes:
+        - createTable:
+            tableName: RentPoint
+            columns:
+              - column:
+                  name: RentPointId
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    primaryKeyName: pk_rentPoint
+              - column:
+                  name: Coordinates
+                  type: varchar(45)
+              - column:
+                  name: Address
+                  type: varchar(45)
+              - column:
+                  name: Phone
+                  type: varchar(45)
+              - column:
+                  name: CityId
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_RP_CityId
+                    references: City(CityId)
+
+  - changeSet:
+      id: 23
+      author: Aliaksei_Kozel
+      comment: "Create RentPoint"
+      changes:
+        - insert:
+            tableName: RentPoint
+            columns:
+              - column:
+                  name: Coordinates
+                  value: "23"
+              - column:
+                  name: Address
+                  value: "volgogradskaya "
+              - column:
+                  name: Phone
+                  value: "230303"
+              - column:
+                  name: CityId
+                  value: 1
+  - changeSet:
+      id: 24
+      author: Aliaksei_Kozel
+      comment: "Create RentPoint"
+      changes:
+        - insert:
+            tableName: RentPoint
+            columns:
+              - column:
+                  name: Coordinates
+                  value: "232"
+              - column:
+                  name: Address
+                  value: "red  square"
+              - column:
+                  name: Phone
+                  value: "330303"
+              - column:
+                  name: CityId
+                  value: 2
